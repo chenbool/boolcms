@@ -1,0 +1,125 @@
+<layout name="Public/layout"/>   
+
+   <!-- 当前位置 -->
+<div id="urHere">BoolCMS 管理中心<b>></b><strong>添加内容</strong> </div>   <div class="mainBox" style="height:auto!important;height:550px;min-height:550px;">
+            <h3><a href="__CONTROLLER__/index" class="actionBtn">内容列表</a>添加内容</h3>
+
+    <form action="__SELF__" method="post" enctype="multipart/form-data">
+     <table width="100%" border="0" cellpadding="8" cellspacing="0" class="tableBasic">
+      <tr>
+       <td width="90" align="right">内容名称</td>
+       <td>
+        <input type="text" name="name" value="" size="80" class="inpMain" required/>
+       </td>
+      </tr>
+      <tr>
+       <td align="right">内容分类</td>
+       <td>
+  <select name="parent_id">
+         <option value="0">未分类</option>
+  <!-- 分类列表 -->
+  <volist name="menu_list" id="vo">
+          <option value="{$vo.child_id}"> {$vo['level']?'├':null}{:str_repeat('┈',$vo['level'])}{$vo.cat_name}</option>
+  </volist> 
+        </select>
+       </td>
+      </tr>
+      <tr>
+       <td align="right">缩略图</td>
+         <td>
+          <input type="file" name="image" size="38" class="inpFlie" />
+          <img src="__PUBLIC__/Admin/images/icon_no.png"> &nbsp;&nbsp;&nbsp;&nbsp;
+          略缩&nbsp;<input type="checkbox" checked="checked" name="thumb" value="1"> &nbsp;&nbsp;&nbsp;&nbsp;
+          水印&nbsp;<input type="checkbox" name="water" value="1"> 
+        </td>
+      </tr>
+      <tr>
+       <td align="right">辅助选项</td>
+         <td>
+          置顶&nbsp;<input type="checkbox" name="is_top" value="1"> &nbsp;&nbsp;&nbsp;&nbsp;
+          推荐&nbsp;<input type="checkbox" name="is_recommend" value="1"> &nbsp;&nbsp;&nbsp;&nbsp;
+          热门&nbsp;<input type="checkbox" name="is_hot" value="1"> 
+        </td>
+      </tr>
+      <tr>
+       <td align="right" valign="top">内容描述</td>
+       <td>
+        <!-- KindEditor -->   
+      <link rel="stylesheet" href="__PUBLIC__/Admin/js/kindeditor/themes/default/default.css" />
+      <link rel="stylesheet" href="__PUBLIC__/Admin/js/kindeditor/plugins/code/prettify.css" />
+      <script charset="utf-8" src="__PUBLIC__/Admin/js/kindeditor/kindeditor.js"></script>
+      <script charset="utf-8" src="__PUBLIC__/Admin/js/kindeditor/lang/zh_CN.js"></script>
+      <script charset="utf-8" src="__PUBLIC__/Admin/js/kindeditor/plugins/code/prettify.js"></script>
+        <script>
+          KindEditor.ready(function(K) {
+            var editor1 = K.create('textarea[name="content"]', {
+              cssPath : '__PUBLIC__/Admin/js/kindeditor/plugins/code/prettify.css',
+              uploadJson : '__PUBLIC__/Admin/js/kindeditor/php/upload_json.php',
+              fileManagerJson : '__PUBLIC__/Admin/js/kindeditor/php/file_manager_json.php',
+              allowFileManager : true,
+              afterCreate : function() {
+                var self = this;
+                K.ctrl(document, 13, function() {
+                  self.sync();
+                  K('form[name=example]')[0].submit();
+                });
+                K.ctrl(self.edit.doc, 13, function() {
+                  self.sync();
+                  K('form[name=example]')[0].submit();
+                });
+              }
+            });
+            prettyPrint();
+          });
+        </script>
+        <!-- /KindEditor -->
+        <textarea id="content" name="content" style="width:780px;height:400px;" class="textArea"></textarea>
+       </td>
+      </tr>
+      <tr>
+       <td align="right">关键字</td>
+       <td>
+        <input type="text" name="keywords" value="" size="50" class="inpMain" />
+       </td>
+      </tr>
+      <tr>
+       <td align="right">简单描述</td>
+       <td>
+        <input type="text" name="desc" value="" size="50" class="inpMain" />
+       </td>
+      </tr>
+      <tr>
+       <td align="right">排序</td>
+       <td>
+        <input type="text" name="sort" value="10" size="5" class="inpMain" />
+       </td>
+      </tr>
+
+      <tr>
+       <td></td>
+       <td>
+        <input name="submit" class="btn" type="submit" value="提交" />
+       </td>
+      </tr>
+     </table>
+    </form>
+       </div>
+ </div>
+
+ <script type="text/javascript">
+ 
+ onload = function(){
+   document.forms['action'].reset();
+ }
+
+ function douAction(){
+     var frm = document.forms['action'];
+
+     frm.elements['new_cat_id'].style.display = frm.elements['action'].value == 'category_move' ? '' : 'none';
+ }
+ 
+    $(function(){
+        $('.article').parent().parent().addClass('cur');
+    });
+
+ </script>

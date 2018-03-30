@@ -1,0 +1,85 @@
+﻿<layout name="Public/layout"/>
+
+
+ <div id="index" class="wrap mb"> <div class="slideShow">
+ <ul class="slides">
+<!-- 图片轮播 -->
+ <volist name="slide" id="vo"> 
+    <li>
+      <a href="{$vo.link}" target="_blank" style="background-image:url(__PUBLIC__/{$vo.img})"></a>
+    </li>
+ </volist>
+   </ul>
+</div>
+
+<script type="text/javascript">
+
+$(document).ready(function(){
+ $('.slides').bxSlider({
+   mode: 'fade'
+ });
+})
+
+
+</script>  <div id="indexLeft"> 
+      <div class="incBox">
+ <h3><a href="http://localhost/dede/douphp/product_category.php">产品展示</a></h3>
+ <ul class="recommendProduct">
+    <li>
+  <p class="img"><a href="http://localhost/dede/douphp/product.php?id=7"><img src="__PUBLIC__/Home/picture/7_thumb.jpg" width="135" height="135" /></a></p>
+  <p class="name"><a href="http://localhost/dede/douphp/product.php?id=7">MacBook Air笔记本电脑</a></p>
+  <p class="price">￥7,650.00 元</p>
+  </li>
+    <li>
+  <p class="img"><a href="http://localhost/dede/douphp/product.php?id=15"><img src="__PUBLIC__/Home/picture/15_thumb.jpg" width="135" height="135" /></a></p>
+  <p class="name"><a href="http://localhost/dede/douphp/product.php?id=15">亨氏Heinz金装粒粒面鳕鱼胡萝卜面</a></p>
+  <p class="price">￥68.00 元</p>
+  </li>
+    <li>
+  <p class="img"><a href="http://localhost/dede/douphp/product.php?id=14"><img src="__PUBLIC__/Home/picture/14_thumb.jpg" width="135" height="135" /></a></p>
+  <p class="name"><a href="http://localhost/dede/douphp/product.php?id=14">PES宽口套装奶瓶</a></p>
+  <p class="price">￥280.00 元</p>
+  </li>
+    <li class="clearBorder">
+  <p class="img"><a href="http://localhost/dede/douphp/product.php?id=13"><img src="__PUBLIC__/Home/picture/13_thumb.jpg" width="135" height="135" /></a></p>
+  <p class="name"><a href="http://localhost/dede/douphp/product.php?id=13">法国合生元奶粉</a></p>
+  <p class="price">￥128.00 元</p>
+  </li>
+   </ul>
+</div>
+      <div class="incBox">
+ <h3>公司简介</h3>
+ <div class="about">
+  <p><img src="__PUBLIC__/Home/picture/img_company.jpg" /></p>
+  <dl>
+   <dt>Bool CMs轻量级企业网站管理系统</dt>
+   <dd>Bool CMs是一款轻量级企业网站管理系统，基于PHP+Mysql架构的，可运行在Linux、Windows、MacOSX、Solaris等各种平台上，系统搭载Smarty模板引擎，支持自定义伪静态，前台模板采用DIV+CSS设计，后台界面设计简洁明了，功能简单易具有良好的用户体验，稳定性好、扩展性及安全性强，可面向中小型站点提供网站建设解决方案。</dd>
+  </dl>
+  <div class="clear"></div>
+  <a href="http://localhost/dede/douphp/page.php?id=1" class="aboutBtn">查看详细公司简介</a>
+ </div>
+</div> </div>
+  <div id="indexRight">
+      <div class="incBox">
+ <h3><a href="http://localhost/dede/douphp/article_category.php">新闻中心</a></h3>
+ <ul class="recommendArticle">
+    <li><b>06-26</b><a href="http://localhost/dede/douphp/article.php?id=10">移动互联网产品设计的核心要素有哪些？</a></li>
+    <li><b>06-26</b><a href="http://localhost/dede/douphp/article.php?id=9">详解如何利用RSS进行网络推广</a></li>
+    <li><b>06-26</b><a href="http://localhost/dede/douphp/article.php?id=8">企业网站文章标题该如何去撰写</a></li>
+    <li><b>06-26</b><a href="http://localhost/dede/douphp/article.php?id=7">移动互联网发展下的企业网变革</a></li>
+    <li class="last"><b>06-26</b><a href="http://localhost/dede/douphp/article.php?id=6">新手如何选购虚拟主机</a></li>
+   </ul>
+</div>
+      <div class="contact">
+ <h3>联系我们</h3>
+ <div class="box">
+  <dl><dt class="address"></dt><dd>公司地址：{$system_config.address}</dd></dl>
+  <dl><dt class="tel"></dt><dd>销售热线：{$system_config.tel}</dd></dl>
+  <dl><dt class="fax"></dt><dd>传真号码：{$system_config.fax}</dd></dl>
+  <dl><dt class="url"></dt><dd>公司网址：<a href="{$system_config.url}">{$system_config.url}</a> </dd></dl>
+  <dl><dt class="email"></dt><dd>电子邮箱：{$system_config.email}</dd></dl>
+ </div>
+</div>
+ </div>
+  <div class="clear"></div>
+ </div>

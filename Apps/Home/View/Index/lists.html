@@ -1,0 +1,45 @@
+﻿<layout name="Public/layout"/>
+
+
+ <div class="wrap mb">
+  <div id="pageLeft"> <div class="treeBox">
+ <h3>文章分类</h3>
+ <ul>
+   <volist name="child_menu" id="vo">
+      <li {:$vo['child_id']==$page['id']?'class="cur"':null } >
+        <a href=" __CONTROLLER__lists/cont_id/{$vo['child_id'] }  " >{$vo.cat_name}</a>
+      </li>
+  </volist>
+<!--     <li class="cur"><a href="http://localhost/dede/douphp/article_category.php?id=1">公司动态</a></li>
+      <li><a href="http://localhost/dede/douphp/article_category.php?id=2">行业新闻</a></li> -->
+     </ul>
+ <ul class="search">
+  <div class="searchBox">
+   <form name="search" id="search" method="get" action="http://localhost/dede/douphp/">
+    <input type="hidden" name="module" value="article">
+    <label for="keyword"></label>
+    <input name="s" type="text" class="keyword" title="" autocomplete="off" maxlength="128" value="文章搜索" onclick="formClick(this,'文章搜索')">
+    <input type="submit" class="btnSearch" value="提交">
+   </form>
+  </div>
+ </ul>
+</div> </div>
+  <div id="pageIn"> <div class="urHere">当前位置：<a href="http://localhost/dede/douphp/">首页</a><b>></b><a href=http://localhost/dede/douphp/article_category.php>文章中心</a><b>></b>公司动态</div>   <div id="articleList"> 
+     
+<volist name="list" id="vo" key="k">
+     
+    <dl {:($key+1)==count($list) ? 'class="last"':null}>
+    <div class="numDate"> <em>14</em>
+     <p>{:date('Y-m-d H:i',$vo['add_time'])}</p>
+    </div>
+    <dt><a href="http://localhost/dede/douphp/article.php?id=6">{$vo.name}</a></dt>
+    <dd>     <p class="desc">{:mb_substr($vo['content'],0,50,'utf-8')}...</p>
+    </dd>
+    </dl>
+</volist>        
+
+     
+   </div>
+   <div class="pager">{$page}</div> </div>
+  <div class="clear"></div>
+ </div>

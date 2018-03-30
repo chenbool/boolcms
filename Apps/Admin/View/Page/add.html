@@ -1,0 +1,94 @@
+<layout name="Public/layout"/>
+
+   <!-- 当前位置 -->
+<div id="urHere">BoolCMS 管理中心<b>></b><strong>添加单页面</strong> </div>   <div class="mainBox" style="height:auto!important;height:550px;min-height:550px;">
+    <h3><a href="__CONTROLLER__/index" class="actionBtn">单页面列表</a>添加单页面</h3>
+  <form action="__SELF__" method="post">
+     <table width="100%" border="0" cellpadding="8" cellspacing="0" class="tableBasic">
+      <tr>
+       <td width="80" align="right">单页面标题</td>
+       <td>
+        <input type="text" name="name" value="" size="40" class="inpMain" />
+       </td>
+      </tr>
+      <tr>
+       <td align="right">别名</td>
+       <td>
+        <input type="text" name="alias" value="" size="40" class="inpMain" />
+       </td>
+      </tr>
+      <tr>
+       <td align="right">上级分类</td>
+       <td>
+        <select name="parent_id">
+         <option value="0">顶级</option>
+
+         <volist name="menu_list" id="vo">
+           <option value="{$vo.child_id}"> {$vo['level']?'├':null}{:str_repeat('┈',$vo['level'])}{$vo.cat_name}</option>
+         </volist>
+
+        </select>
+       </td>
+      </tr>
+      <tr>
+       <td align="right">单页面内容</td>
+       <td>
+        <!-- KindEditor -->		
+			<link rel="stylesheet" href="__PUBLIC__/Admin/js/kindeditor/themes/default/default.css" />
+			<link rel="stylesheet" href="__PUBLIC__/Admin/js/kindeditor/plugins/code/prettify.css" />
+			<script charset="utf-8" src="__PUBLIC__/Admin/js/kindeditor/kindeditor.js"></script>
+			<script charset="utf-8" src="__PUBLIC__/Admin/js/kindeditor/lang/zh_CN.js"></script>
+			<script charset="utf-8" src="__PUBLIC__/Admin/js/kindeditor/plugins/code/prettify.js"></script>
+        <script>
+					KindEditor.ready(function(K) {
+						var editor1 = K.create('textarea[name="content"]', {
+							cssPath : '__PUBLIC__/Admin/js/kindeditor/plugins/code/prettify.css',
+							uploadJson : '__PUBLIC__/Admin/js/kindeditor/php/upload_json.php',
+							fileManagerJson : '__PUBLIC__/Admin/js/kindeditor/php/file_manager_json.php',
+							allowFileManager : true,
+							afterCreate : function() {
+								var self = this;
+								K.ctrl(document, 13, function() {
+									self.sync();
+									K('form[name=example]')[0].submit();
+								});
+								K.ctrl(self.edit.doc, 13, function() {
+									self.sync();
+									K('form[name=example]')[0].submit();
+								});
+							}
+						});
+						prettyPrint();
+					});
+        </script>
+        <!-- /KindEditor -->
+        <textarea id="content" name="content" style="width:780px;height:400px;" class="textArea"></textarea>
+       </td>
+      </tr>
+      <tr>
+       <td align="right">关键字</td>
+       <td>
+        <input type="text" name="keywords" value="" size="90" class="inpMain" />
+       </td>
+      </tr>
+      <tr>
+       <td align="right">简单描述</td>
+       <td>
+        <input type="text" name="description" value="" size="90" class="inpMain" />
+       </td>
+      </tr>
+      <tr>
+       <td></td>
+       <td>
+        <input class="btn" type="submit" value="提交" />
+       </td>
+      </tr>
+     </table>
+    </form>
+       </div>
+ </div>
+<script>
+    $(function(){
+      $('.page').parent().parent().addClass('cur');
+    });
+</script>

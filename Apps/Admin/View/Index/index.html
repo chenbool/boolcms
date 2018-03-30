@@ -1,0 +1,176 @@
+<layout name="Public/layout"/>
+
+<div id="urHere">BoolCMS 管理中心</div>
+
+ <div id="index" class="mainBox" style="padding-top:18px;height:auto!important;height:550px;min-height:550px;">
+      <div class="warning">
+          您还没有删除 install 文件夹，出于安全的考虑，我们建议您删除 install 文件夹。
+      </div>
+    
+   <div id="douApi"></div>
+      <div class="indexBox">
+    <div class="boxTitle">单页面快速管理</div>
+    <ul class="ipage">
+      
+     <a href="page.php?rec=edit&id=1">公司简介</a> 
+      
+     <a href="page.php?rec=edit&id=2" class="child1">企业荣誉</a> 
+      
+     <a href="page.php?rec=edit&id=3" class="child1">发展历程</a> 
+      
+     <a href="page.php?rec=edit&id=4" class="child1">联系我们</a> 
+      
+     <a href="page.php?rec=edit&id=5">人才招聘</a> 
+      
+     <a href="page.php?rec=edit&id=6">营销网络</a> 
+          <div class="clear"></div>
+    </ul>
+   </div>
+   <table width="100%" border="0" cellspacing="0" cellpadding="0" class="indexBoxTwo">
+    <tr>
+     <td width="65%" valign="top" class="pr">
+      <div class="indexBox">
+       <div class="boxTitle">网站基本信息</div>
+       <ul>
+        <table width="100%" border="0" cellspacing="0" cellpadding="7" class="tableBasic">
+         <tr>
+          <td width="120">单页面数：</td>
+          <td><strong>6</strong></td>
+          <td width="100">文章总数：</td>
+          <td><strong>10</strong></td>
+         </tr>
+         <tr>
+          <td>商品总数：</td>
+          <td><strong>15</strong></td>
+          <td>系统语言：</td>
+          <td><strong>zh_cn</strong></td>
+         </tr>
+         <tr>
+          <td>URL 重写：</td>
+          <td><strong>关闭<a href="system.php" class="cueRed ml">（点击开启）</a> 
+           </strong></td>
+          <td>编码：</td>
+          <td><strong>UTF-8</strong></td>
+         </tr>
+         <tr>
+          <td>站点地图：</td>
+          <td><strong>开启</strong></td>
+          <td>站点模板：</td>
+          <td><strong>default</strong></td>
+         </tr>
+         <tr>
+          <td>Bool CMS版本：</td>
+          <td><strong>v1.0</strong></td>
+          <td>安装日期：</td>
+          <td><strong>2016-02-25</strong></td>
+         </tr>
+        </table>
+       </ul>
+      </div>
+     </td>
+     <td valign="top" class="pl">
+      <div class="indexBox">
+       <div class="boxTitle">管理员  登录记录</div>
+       <ul>
+        <table width="100%" border="0" cellspacing="0" cellpadding="7" class="tableBasic">
+         <tr>
+          <th width="45%">IP地址</th>
+          <th width="55%">操作时间</th>
+         </tr>
+                  <tr>
+          <td align="center">127.0.0.1</td>
+          <td align="center">2016-02-25 23:29:08</td>
+         </tr>
+                  <tr>
+          <td align="center">127.0.0.1</td>
+          <td align="center">2016-02-25 13:48:48</td>
+         </tr>
+                  <tr>
+          <td align="center">127.0.0.1</td>
+          <td align="center">2013-10-16 09:43:01</td>
+         </tr>
+                  <tr>
+          <td align="center">127.0.0.1</td>
+          <td align="center">2013-10-16 09:42:58</td>
+         </tr>
+                 </table>
+       </ul>
+      </div>
+     </td>
+    </tr>
+   </table>
+   <div class="indexBox">
+    <div class="boxTitle">服务器信息</div>
+    <ul>
+     <table width="100%" border="0" cellspacing="0" cellpadding="7" class="tableBasic">
+         <tr>
+             <td><strong>主机名IP端口：</strong></td>
+             <td colspan="5">{:$_SERVER['SERVER_NAME'] ."( $_SERVER[SERVER_PORT]端口 )"}</td>
+         </tr>
+      <tr>
+       <td width="90" valign="top"><strong>PHP 版本：</strong></td>
+       <td valign="top">{:PHP_VERSION} </td>
+       <td width="100" valign="top"><strong>MySQL 版本：</strong></td>
+       <td valign="top">{$system_info.mysql}</td>
+       <td width="90" valign="top"><strong>操作系统：</strong></td>
+       <td valign="top">{$system_info.system}</td>
+      </tr>
+      <tr>
+       <td valign="top"><strong>上传限制：</strong></td>
+       <td valign="top">{$system_info.upload_size}</td>
+       <td valign="top"><strong>服务器：</strong></td>
+       <td valign="top">{$_SERVER['SERVER_SOFTWARE']}</td>
+       <td valign="top"><strong>GD 库版本：</strong></td>
+       <td valign="top">{$system_info.gd}</td>
+      </tr>
+      <tr>
+          <td><strong>Think版本：</strong></td>
+          <td>{:THINK_VERSION}</td>
+          <td><strong>程序目录：</strong></td>
+          <td>{:dirname( THINK_PATH )}</td>
+          <td><strong>Zend版本：</strong></td>
+          <td>{:zend_version()}</td>
+      </tr>
+      <tr>
+          <td><strong>执行时间限制：</strong></td>
+          <td>{$system_info.exec_time}</td>
+          <td><strong>服务器时间：</strong></td>
+          <td>{:date('Y-m-d H:i:s',time() )}</td>
+          <td><strong>剩余空间：</strong></td>
+          <td>{$system_info.disk_free}</td>
+      </tr>
+     </table>
+    </ul>
+   </div>
+   <div class="indexBox">
+    <div class="boxTitle">系统开发</div>
+    <ul>
+     <table width="100%" border="0" cellspacing="0" cellpadding="7" class="tableBasic">
+      <tr>
+       <td width="120"> Bool CMS官网： </td>
+       <td><a href="http://www.douco.com" target="_blank">http://www.douco.com</a></td>
+      </tr>
+      <tr>
+       <td> 贡献者： </td>
+       <td>bool</td>
+      </tr>
+      <tr>
+       <td> 联系我们： </td>
+       <td>
+           <a href="http://www.douco.com/license.html" target="_blank">
+                <img  style="CURSOR: pointer" onclick="javascript:window.open('http://b.qq.com/webc.htm?new=0&sid=81001985&o=boolcms&q=7', '_blank', 'height=502, width=644,toolbar=no,scrollbars=no,menubar=no,status=no');"  border="0" SRC=http://wpa.qq.com/pa?p=1:81001985:3 alt="点击这里给我发消息">
+                &nbsp; &nbsp;<a target="_blank" href="http://amos1.taobao.com/msg.ww?v=2&uid=taobao181860&s=1" ><img border="0" src="http://amos1.taobao.com/online.ww?v=2&uid=taobao181860&s=1" alt="点击这里给我发消息" /></a>
+           </a>
+       </td>
+      </tr>
+     </table>
+    </ul>
+   </div>
+    
+  </div>
+ </div>
+<script>
+    $(function(){
+      $('.home').parent().parent().addClass('cur');
+    });
+</script>

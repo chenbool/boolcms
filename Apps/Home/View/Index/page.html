@@ -1,0 +1,24 @@
+﻿<layout name="Public/layout"/>
+
+ <div class="wrap mb">
+  <div id="pageLeft"> <div class="treeBox">
+ <h3>{$child_menu[0]['parent_name']}</h3>
+ <ul>
+<!--   <li class="cur"><a href="http://localhost/dede/douphp/page.php?id=1">公司简介</a></li> -->
+  <volist name="child_menu" id="vo">
+      <li {:$vo['page_id']==$page['id']?'class="cur"':null } >
+        <a href=" __CONTROLLER__page/id/{$vo['page_id'] }/parent_id/{$v['child_id'] } " >{$vo.cat_name}</a>
+      </li>
+  </volist>
+
+     </ul>
+</div> </div>
+  <div id="pageIn"> <div class="urHere">当前位置：<a href="index">首页</a><b>></b>{$page.name}</div>   
+    <div id="page">
+      <h1>{$page.name}</h1>
+      <div class="content"> {:html_entity_decode(html_entity_decode($page['content'])) } </div>
+    </div>
+  </div>
+  <div class="clear"></div>
+ </div>
+

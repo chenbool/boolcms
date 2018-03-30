@@ -1,0 +1,72 @@
+<layout name="Public/layout"/>
+
+   <!-- 当前位置 -->
+<div id="urHere">BoolCMS 管理中心<b>></b><strong>自定义导航栏</strong> </div>   <div class="mainBox" style="height:auto!important;height:550px;min-height:550px;">
+    <h3><a href="__CONTROLLER__/add" class="actionBtn">添加导航</a>自定义导航栏</h3>
+        <div class="navList">
+     <ul class="tab">
+      <li><a href="__CONTROLLER__/index/" {:( I('get.type')=='main'|| I('get.type')=='')?'class="selected"':null} >主导航</a></li>
+      <li><a href="__CONTROLLER__/index/type/top" {:I('get.type')=='top'?'class="selected"':null}>顶部</a></li>
+      <li><a href="__CONTROLLER__/index/type/bottom" {:I('get.type')=='bottom'?'class="selected"':null}>底部</a></li>
+     </ul>
+
+     <table width="100%" border="0" cellpadding="10" cellspacing="0" class="tableBasic">
+
+      <tr>
+       <th width="35" align="center">排序</th>
+       <th width="35" align="center">ID</th>
+       <th width="113" align="center">导航名称</th>
+       <th align="left">链接地址</th>
+       <th width="60" align="center">状态</th>
+       <th width="120" align="center">操作</th>
+      </tr>
+
+<volist name="menu_list" id="vo">
+       <tr>
+       <td align="center"><input type="text" value="{$vo.sort}" class="inpMain" style="width:30px; " onchange="send_sort('__CONTROLLER__/AjaxOrder',{$vo.child_id},this.value)"/></td>
+       <td>{$vo.child_id}</td>
+       <td> {$vo['level']?'├':null}{:str_repeat('┈┈',$vo['level'])}{$vo.cat_name}</td>
+       <td>{:$vo['link']?'<a href="'.$vo['link'].'"  target="_blank">'.mb_substr($vo['link'],0,75,'utf-8').'</a>':'暂无链接'}</td>
+       <td align="center">{$vo['status']?'[ 隐藏 ]':'[ 正常 ]'}</td>
+       <td align="center">
+           <a href="__CONTROLLER__/edit/id/{$vo.child_id}">编辑</a> |
+           <a href="javascript:;" onclick="deletes('__CONTROLLER__/del/id/{$vo.child_id}')">删除</a>
+       </td>
+      </tr>
+</volist>
+     </table>
+    </div>
+               </div>
+ </div>
+<script>
+    //排序
+    function send_sort(url,id,value){
+
+        $.ajax({
+            type: "POST",
+            url: url,
+            data:  { child_id: id,sort:value },
+            success: function(msg){
+                if(msg.status==0){
+                    // console.log(msg.status);
+                    layer.msg('修改失败!',{icon: 5});
+                }
+
+            }
+        });
+
+    }
+
+
+    //删除
+    function deletes(url){
+        layer.confirm('你真的要删除吗?', {icon: 3, title:'提示'}, function(index){
+            location.href=url;
+            layer.close(index);
+        });
+    }
+
+    $(function(){
+      $('.nav').parent().parent().addClass('cur');
+    });
+</script>

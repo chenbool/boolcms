@@ -1,0 +1,122 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset={$system_config.language}" />
+<meta name="keywords" content="{$system_config.keywords}" />
+<meta name="description" content="{$system_config.description}" />
+<title>{$system_config.title}</title>
+<link href="__PUBLIC__/Home/css/style.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="__PUBLIC__/Home/js/jquery.min.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Home/js/global.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Home/js/slide_show.js"></script>
+</head>
+<body>
+<div id="wrapper"> <div id="top">
+ <div class="wrap">
+    <ul class="topNav">
+
+    <!-- 顶部导航栏 -->
+    <volist name="top_list" id="vo" > 
+      <if condition="$vo['type'] eq 'top' " key="k">
+        <li><a href="{$vo.link}">{$vo.cat_name}</a><s></s></li>
+      <else/>
+      </if>
+    </volist> 
+
+      <li><a href="javascript:AddFavorite('__APP__', '{$system_config.title}')">收藏本站</a></li>
+  </ul>
+ </div>
+</div>
+<div id="header">
+ <div class="wrap">
+
+ <!-- logo -->
+  <ul class="logo">
+   <a href="__APP__"><img src="__PUBLIC__/{$system_config.logo}" alt="{$system_config.title}" title="{$system_config.title}" /></a>
+  </ul>
+
+  <!-- 搜索 -->
+  <ul class="search">
+   <div class="searchBox">
+    <form name="search" id="search" method="get" action="http://localhost/dede/douphp/">
+     <label for="keyword"></label>
+     <input name="s" type="text" class="keywords" title="输入您要搜索的产品名称" autocomplete="off" onclick="formClick(this,'产品搜索')" value="产品搜索" size="32" maxlength="128">
+     <input type="submit" class="btnSearch" value="提交">
+    </form>
+   </div>
+  </ul>
+
+ </div>
+</div>
+
+<div id="mainNav">
+ <ul class="wrap">
+
+
+<!-- 第一级菜单 -->
+<volist name="main_list" id="vo" key="k">   
+
+  <li {:$vo['child_id']==I('get.parent_id/d')?'class="cur"':null} >
+
+  <if condition="$vo['parent_id'] eq 0 ">
+    <php>
+      if($vo['page_id']){
+        $link='__CONTROLLER__page/id/'.$vo['page_id'].'/parent_id/'.$v['child_id'];
+      }else if($vo['cont_id']){
+        $link='__CONTROLLER__lists/id/'.$vo['cont_id'];
+      }else{
+        $link=$vo['link'];
+      }
+    </php>
+    <a href="{$link}" {:$k==1?'class="first"':null}  {:$k==count($main_list)?'class="last"':null } >{$vo.cat_name}</a>
+
+      <!-- 第二级菜单 -->
+      <ul>
+        <volist name="main_list" id="v" >
+            <php>
+              if($v['page_id']){
+                $links='__CONTROLLER__page/id/'.$v['page_id'].'/parent_id/'.$v['child_id'];
+              }else if($v['cont_id']){
+
+              }else{
+                $links=$v['link'];
+              }
+            </php>
+          <if condition="$vo['child_id'] eq $v['parent_id'] ">
+              <li>  
+                <a href="{$links}">{$v.cat_name}</a> 
+              </li>
+          <else /> </if>
+        </volist>
+      </ul>
+
+  </if>
+
+  </li>
+</volist> 
+   
+    <div class="clear"></div>
+ </ul>
+</div>
+
+
+{__CONTENT__}
+
+   <div id="footer">
+ <div class="wrap">
+  <div class="footNav">
+  <!-- 底部导航栏 -->
+<volist name="bottom_list" id="vo" > 
+  <if condition="$vo['type'] eq 'bottom' " key="k">
+    <a href="{$vo.link}">{$vo.cat_name}</a><i>|</i>
+  <else/>
+  </if>
+</volist> 
+
+  <div class="copyRight">{$system_config.copy} <a href='__APP__' target='_blank'>{$system_config.title}</a> </div>
+
+  </div>
+</div>
+ </div>
+</body>
+</html>

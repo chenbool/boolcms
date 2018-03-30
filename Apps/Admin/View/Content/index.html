@@ -1,0 +1,139 @@
+<layout name="Public/layout"/>
+
+   <!-- 当前位置 -->
+<div id="urHere">BoolCMS 管理中心<b>></b><strong>内容列表</strong> </div>   <div class="mainBox" style="height:auto!important;height:550px;min-height:550px;">
+        <h3><a href="__CONTROLLER__/add" class="actionBtn add">添加内容</a>内容列表</h3>
+    <div class="filter">
+
+    <!-- 筛选 -->
+    <form action="__SELF__" method="get">
+     <select name="parent_id">
+      <option value="">未分类</option>
+  <!-- 分类列表 -->
+  <volist name="menu_list" id="vo">
+          <option value="{$vo.child_id}"
+          {:I('get.parent_id')==$vo['child_id']?'selected="selected"':null}
+          > {$vo['level']?'├':null}{:str_repeat('┈',$vo['level'])}{$vo.cat_name}</option>
+  </volist>   
+      </select>
+     <input name="name" type="text" class="inpMain" value="" size="40" placeholder="内容标题"/>
+     <input class="btnGray" type="submit" value="筛选" />
+    </form>
+
+<!--     <span>
+        <a class="btnGray" href="">开始筛选</a>
+    </span> -->
+    </div>
+        <div id="list">
+
+<form name="action" method="post" action="__CONTROLLER__/category">
+
+    <table width="100%" border="0" cellpadding="8" cellspacing="0" class="tableBasic">
+     <tr>
+      <th width="22" align="center"><input  type='checkbox' id='chkall' onclick='selectcheckbox(this.form)' value='check'></th>
+      <th width="40">排序</th>
+      <th width="40" align="center">编号</th>
+      <th align="left">文章名称</th>
+      <th width="150" align="center">文章分类</th>
+      <th width="120" align="center">添加日期</th>
+      <th width="80" align="center">操作</th>
+     </tr>
+
+<!-- 循环 -->
+<volist name="list" id="vo">
+      <tr>
+      <td align="center"><input type="checkbox" name="checkbox[]" value="{$vo.cont_id}" /></td>
+      <td align="center" width="40"><input type="text" value="{$vo.sort}" class="inpMain" style="width:30px;" onchange="send_sort('__CONTROLLER__/AjaxOrder',{$vo.cont_id},this.value)"></td>
+      <td align="center">{$vo.cont_id}</td>
+      <td><a href="article.php?rec=edit&id=10">{:mb_substr($vo['name'],0,4,'utf-8');}</a></td>
+      <td align="center"><a href="__CONTROLLER__/index/parent_id/{$vo.parent_id}">{$vo['cat_name']?$vo['cat_name']:'暂无分类'}</a></td>
+      <td align="center">{:date('Y-m-d H:i',$vo['add_time'])}</td>
+      <td align="center">
+              <a href="__CONTROLLER__/edit/id/{$vo.cont_id}">编辑</a> | <a href="__CONTROLLER__/del/id/{$vo.cont_id}">删除</a>
+      </td>
+     </tr>
+</volist>
+
+    </table>
+
+
+    <div class="action">
+
+     <select name="action" onchange="douAction()">
+      <option value="">请选择...</option>
+      <option value="del">删除</option>
+      <option value="category_move">移动分类至</option>
+     </select>
+
+     <select name="new_cat_id" style="display:none">
+      <option value="0">未分类</option>
+  <!-- 分类列表 -->
+  <volist name="menu_list" id="vo">
+          <option value="{$vo.child_id}"> {$vo['level']?'├':null}{:str_repeat('┈',$vo['level'])}{$vo.cat_name}</option>
+  </volist>  
+      </select>
+
+     <input class="btn" type="submit" value="执行" onclick="return confirm('你真的要执行吗？') "/>
+    </div>
+    </form>
+
+    </div>
+    <div class="clear"></div>
+
+    <!-- 分页 -->
+    <div class="pager">
+        {$page}
+    </div>
+
+ </div>
+
+
+
+
+ <script type="text/javascript">
+ 
+ onload = function(){
+   document.forms['action'].reset();
+ }
+
+ function douAction(){
+     var frm = document.forms['action'];
+
+     frm.elements['new_cat_id'].style.display = frm.elements['action'].value == 'category_move' ? '' : 'none';
+ }
+ 
+
+    $(function(){
+        $('.article').parent().parent().addClass('cur');
+    });
+ 
+    //排序
+    function send_sort(url,id,value){
+
+        $.ajax({
+            type: "POST",
+            url: url,
+            data:  { child_id: id,sort:value },
+            success: function(msg){
+                if(msg.status==0){
+                    // console.log(msg.status);
+                    layer.msg('修改失败!',{icon: 5});
+                }
+
+            }
+        });
+
+    }
+
+
+    //删除
+    function deletes(url){
+        layer.confirm('你真的要删除吗?', {icon: 3, title:'提示'}, function(index){
+            location.href=url;
+            layer.close(index);
+        });
+    }
+
+
+
+ </script>

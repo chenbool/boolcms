@@ -1,0 +1,70 @@
+<layout name="Public/layout"/>
+
+
+   <!-- 当前位置 -->
+<div id="urHere">BoolCMS 管理中心<b>></b><strong>添加分类</strong> </div>   <div class="mainBox" style="height:auto!important;height:550px;min-height:550px;">
+            <h3><a href="__CONTROLLER__/index" class="actionBtn">内容分类</a>添加分类</h3>
+
+    <form action="__SELF__" method="post">
+     <table width="100%" border="0" cellpadding="8" cellspacing="0" class="tableBasic">
+      <tr>
+       <td width="80" align="right">分类名称</td>
+       <td>
+        <input type="text" name="cat_name" value="" size="40" class="inpMain" />
+       </td>
+      </tr>
+      <tr>
+       <td align="right">上级分类</td>
+       <td>
+        <select name="parent_id">
+         <option value="0">顶级</option>
+
+  <!-- 分类列表 -->
+  <volist name="menu_list" id="vo">
+          <option value="{$vo.child_id}"> {$vo['level']?'├':null}{:str_repeat('┈',$vo['level'])}{$vo.cat_name}</option>
+  </volist>   
+
+        </select>
+       </td>
+      </tr>
+      <tr>
+       <td align="right">简单描述</td>
+       <td>
+        <textarea name="desc" cols="60" rows="4" class="textArea"></textarea>
+       </td>
+      </tr>
+      <tr>
+          <td height="35" align="right">状态</td>
+          <td>
+              <label for="type_0">
+                  <input type="radio" name="status" id="type_0" value="0" checked="true">
+                  正常
+              </label>
+              <label for="type_1">
+                  <input type="radio" name="status" id="type_1" value="1">
+                  隐藏
+              </label>
+          </td>
+      </tr>
+      <tr>
+       <td align="right">排序</td>
+       <td>
+        <input type="text" name="sort" value="10" size="5" class="inpMain" />
+       </td>
+      </tr>
+      <tr>
+       <td></td>
+       <td>
+        <input  class="btn" type="submit" value="提交" />
+       </td>
+      </tr>
+     </table>
+    </form>
+       </div>
+ </div>
+
+<script>
+    $(function(){
+      $('.articleCat').parent().parent().addClass('cur');
+    });
+</script>

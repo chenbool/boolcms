@@ -1,0 +1,31 @@
+<layout name="Public/layout"/>
+
+   <!-- 当前位置 -->
+<div id="urHere">BoolCMS 管理中心<b>></b><strong>单页面列表</strong> </div>   <div class="mainBox" style="height:auto!important;height:550px;min-height:550px;">
+    <h3><a href="__CONTROLLER__/add" class="actionBtn">添加单页面</a>单页面列表</h3>
+      <div class="page">
+
+
+<volist name="page_list" id="vo" key="k"> 
+       <dl {:$k>1 ?'class="child1" ':null}>
+        <dt><strong>{$vo.name}</strong><p>{$vo.alias}</p></dt>
+        <dd><a href="__CONTROLLER__/edit/id/{$vo.id}">编辑</a> | <a href="javascript:;" onclick="deletes(' __CONTROLLER__/delete/id/{$vo.id}')" >删除</a></dd>
+      </dl>
+</volist>
+
+         </div>
+           </div>
+ </div>
+ <script>
+    $(function(){
+      $('.page').parent().parent().addClass('cur');
+    });
+
+    //删除
+    function deletes(url){
+        layer.confirm('你真的要删除吗?', {icon: 3, title:'提示'}, function(index){
+            location.href=url;
+            layer.close(index);
+        });
+    }
+ </script>

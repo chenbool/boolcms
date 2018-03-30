@@ -1,0 +1,270 @@
+<layout name="Public/layout"/>
+
+   <!-- 当前位置 -->
+<div id="urHere">BoolCMS 管理中心<b>></b><strong>系统设置</strong> </div>   <div class="mainBox" style="height:auto!important;height:550px;min-height:550px;">
+    <h3>系统设置</h3>
+    <script type="text/javascript">
+     
+     $(function(){ $(".idTabs").idTabs(); });
+     
+    </script>
+    <div class="idTabs">
+      <ul class="tab">
+        <li><a href="#main">常规设置</a></li>
+        <li><a href="#display">显示设置</a></li>-
+        <li><a href="#mail">邮件服务器</a></li>
+              </ul>
+      <div class="items">
+
+       <form action="__SELF__" method="post" enctype="multipart/form-data">
+
+        <div id="main">
+        <table width="100%" border="0" cellpadding="8" cellspacing="0" class="tableBasic">
+         <tr>
+           <th width="131">名称</th>
+           <th>内容</th>
+         </tr>
+
+         <tr>
+                <td align="right">站点标志</td>
+                <td>
+                    <input type="file" name="logo" size="18" />
+                    <input type="hidden" name="logo" value="{:$config['logo']?$config['logo']:null}"/>
+                    <a href="__PUBLIC__/{$config.logo}" target="_blank"><img src="__PUBLIC__/{$config.logo}"></a>
+                </td>
+         </tr>
+         <tr>
+         <td align="right">图片水印</td>
+                <td>
+                    <input type="file" name="watermark" size="18" />
+                    <input type="hidden" name="watermark" value="{:$config['watermark']?$config['watermark']:null}"/>
+                    <a href="__PUBLIC__/{$config.watermark}" target="_blank"><img src="__PUBLIC__/{$config.watermark}"></a>
+                </td>
+         </tr>
+         <tr>
+          <td align="right">站点标题</td>
+          <td>
+                    <input type="text" name="title" value="{$config.title}" size="80" class="inpMain" />
+          </td>
+         </tr>
+         <tr>
+          <td align="right">站点网址</td>
+          <td>
+                    <input type="text" name="url" value="{$config.url}" size="80" class="inpMain" />
+          </td>
+         </tr>
+         <tr>
+          <td align="right">站点关键字</td>
+          <td>
+                      <input type="text" name="keywords" value="{$config.keywords}" size="80" class="inpMain" />
+          </td>
+         </tr>
+         <tr>
+          <td align="right">站点描述</td>
+          <td>
+                      <input type="text" name="description" value="{$config.description}" size="80" class="inpMain" />
+          </td>
+         </tr>
+
+          <tr>
+          <td align="right">公司地址</td>
+          <td>
+                      <input type="text" name="address" value="{$config.address}" size="80" class="inpMain" />
+                                </td>
+         </tr>
+          <tr>
+          <td align="right">ICP备案号</td>
+          <td>
+                      <input type="text" name="icp" value="{$config.icp}" size="80" class="inpMain" />
+                                </td>
+         </tr>
+         <tr>
+                <td align="right">版权</td>
+                <td>
+                    <input type="text" name="copy" value="{$config.copy}" size="80" class="inpMain" />
+                </td>
+         </tr>
+         <tr>
+          <td align="right">客服电话</td>
+          <td>
+                      <input type="text" name="tel" value="{$config.tel}" size="80" class="inpMain" />
+                                </td>
+         </tr>
+                  <tr>
+          <td align="right">传真</td>
+          <td>
+                      <input type="text" name="fax" value="{$config.fax}" size="80" class="inpMain" />
+                                </td>
+         </tr>
+                  <tr>
+          <td align="right">客服QQ号码</td>
+          <td>
+                      <input type="text" name="qq" value="{$config.qq}" size="80" class="inpMain" />
+                      <p class="cue">多个客服的QQ号码请以半角逗号（,）分隔，如果需要设定昵称则在号码后跟 /昵称。</p>
+          </td>
+         </tr>
+                  <tr>
+          <td align="right">邮件地址</td>
+          <td>
+                      <input type="text" name="email" value="{$config.email}" size="80" class="inpMain" />
+                                </td>
+         </tr>
+                  <tr>
+          <td align="right">网页编码</td>
+          <td>
+                      <select name="language">
+                        <option value="utf-8" {:$config['language']=='utf-8'?'selected':null } >utf-8</option>
+                        <option value="gbk" {:$config['language']=='gbk'?'selected':null }>gbk</option>
+                        <option value="gb2312" {:$config['language']=='gb2312'?'selected':null } >gb2312</option>
+                       </select>
+           </td>
+         </tr>
+
+         <!--<tr>-->
+          <!--<td align="right">启用验证码</td>-->
+          <!--<td>-->
+                      <!--<label for="captcha_0">-->
+            <!--<input type="radio" name="captcha" id="captcha_0" value="0">-->
+            <!--否</label>-->
+           <!--<label for="captcha_1">-->
+            <!--<input type="radio" name="captcha" id="captcha_1" value="1" checked="true">-->
+            <!--是</label>-->
+                                <!--</td>-->
+         <!--</tr>-->
+
+         <tr>
+          <td align="right">统计/客服代码调用</td>
+          <td>
+                      <textarea name="code" cols="83" rows="5" class="textArea" />{$config.code}</textarea>
+          </td>
+         </tr>
+
+    </table>
+        </div>
+        <div id="display">
+
+<!--显示设置-->
+<table width="100%" border="0" cellpadding="8" cellspacing="0" class="tableBasic">
+         <tr>
+           <th width="131">名称</th>
+           <th>内容</th>
+         </tr>
+    <tr>
+        <td> <b>启用略缩图</b></td>
+        <td>
+
+            <label>
+                <input type="radio" name="thumb" value="1" {:$config['thumb']==1?'checked="true"':null } >
+                启用
+            </label>
+            <label>
+                <input type="radio" name="thumb"  value="0" {:$config['thumb']==0?'checked="true"':null }>
+                关闭
+            </label>
+        </td>
+    </tr>
+    <tr>
+    <tr>
+        <td><b>添加水印</b></td>
+        <td>
+
+            <label>
+                <input type="radio" name="water" value="1" {:$config['water']==1?'checked="true"':null }>
+                启用
+            </label>
+            <label>
+                <input type="radio" name="water"  value="0" {:$config['water']==0?'checked="true"':null }>
+                关闭
+            </label>
+        </td>
+    </tr>
+    <tr>
+         <tr>
+          <td align="right">缩略图</td>
+          <td>
+           宽度:&nbsp;<input type="text" name="thumb_width" value="{$config.thumb_width}" size="3" class="inpMain" />&nbsp; px
+           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+           高度:&nbsp;<input type="text" name="thumb_height" value="{$config.thumb_height}" size="3" class="inpMain" />&nbsp; px
+           </td>
+         </tr>
+        <tr>
+            <td align="right">Logo</td>
+            <td>
+                宽度:&nbsp;<input type="text" name="logo_width" value="{$config.logo_width}" size="3" class="inpMain" />&nbsp; px
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                高度:&nbsp;<input type="text" name="logo_height" value="{$config.logo_height}" size="3" class="inpMain" />&nbsp; px
+            </td>
+        </tr>
+        <tr>
+            <td align="right">图片水印</td>
+            <td>
+                宽度:&nbsp;<input type="text" name="watermark_width" value="{$config.watermark_width}" size="3" class="inpMain" />&nbsp; px
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                高度:&nbsp;<input type="text" name="watermark_height" value="{$config.watermark_height}" size="3" class="inpMain" />&nbsp; px
+            </td>
+        </tr>
+        <tr>
+            <td align="right">前台幻灯</td>
+            <td>
+                宽度:&nbsp;<input type="text" name="show_width" value="{$config.show_width}" size="3" class="inpMain" />&nbsp; px
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                高度:&nbsp;<input type="text" name="show_height" value="{$config.show_height}" size="3" class="inpMain" />&nbsp; px
+            </td>
+        </tr>
+</table>
+
+        </div>
+
+                <div id="mail">
+<!--邮件设置-->
+<table width="100%" border="0" cellpadding="8" cellspacing="0" class="tableBasic">
+         <tr>
+           <th width="131">名称</th>
+           <th>内容</th>
+         </tr>
+                  <tr>
+          <td align="right">SMTP服务器</td>
+          <td>
+                      <input type="text" name="mail_host" value="{$config.mail_host}" size="80" class="inpMain" />
+                       <p class="cue">一般邮件服务器地址为：smtp.domain.com，如果是本机则对应localhost即可</p>
+          </td>
+         </tr>
+                  <tr>
+          <td align="right">服务器端口</td>
+          <td>
+                      <input type="text" name="mail_port" value="{$config.mail_port}" size="80" class="inpMain" />
+                                </td>
+         </tr>
+                  <tr>
+          <td align="right">发件邮箱</td>
+          <td>
+                      <input type="text" name="mail_username" value="{$config.mail_username}" size="80" class="inpMain" />
+                                </td>
+         </tr>
+                  <tr>
+          <td align="right">发件邮箱密码</td>
+          <td>
+                      <input type="password" name="mail_password" value="{$config.mail_password}" size="80" class="inpMain" />
+                                </td>
+         </tr>
+                 </table>
+        </div>
+                <table width="100%" border="0" cellpadding="8" cellspacing="0" class="tableBasic">
+         <tr>
+          <td width="131"></td>
+          <td>
+           <input class="btn" type="submit" value="提交" />
+          </td>
+         </tr>
+        </table>
+        </form>
+      </div>
+    </div>
+   </div>
+ </div>
+
+<script>
+    $(function(){
+      $('.system').parent().parent().addClass('cur');
+    });
+</script>
