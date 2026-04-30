@@ -10,21 +10,11 @@
 
 ---
 
-## � 项目演示
+## 📸 项目演示
 
-<p align="center">
-  <img src="./demo/home.png" width="600" alt="前台首页">
-  <br>
-  <sub>🏠 前台首页</sub>
-</p>
-
-<br>
-
-<p align="center">
-  <img src="./demo/admin.png" width="600" alt="后台管理">
-  <br>
-  <sub>⚙️ 后台管理</sub>
-</p>
+| 🏠 前台首页 | ⚙️ 后台管理 |
+|:----------:|:----------:|
+| ![home](./demo/home.png) | ![admin](./demo/admin.png) |
 
 ---
 
